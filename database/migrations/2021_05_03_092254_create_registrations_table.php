@@ -15,10 +15,14 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->string('phone_number');
             $table->string('name');
+            $table->string('phone');
             $table->string('email');
+            $table->string('address');
+            $table->string('username');
+            $table->string('password');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

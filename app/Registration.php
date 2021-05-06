@@ -4,10 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 class Registration extends Model
 {
-    //
+    
+    use HasApiTokens, Notifiable;
     protected $fillable = [
-        'phone_number', 'name', 'email'
+        'name',
+        'phone',
+        'email',
+        'address',
+        'username',
+        'password'
     ];
 }

@@ -3,11 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
-class transaction extends Model
+class Transaction extends Model
 {
     //
+    use HasApiTokens, Notifiable;
+    public $incrementing = false;
     protected $fillable = [
-        'transaction_id','source', 'destination', 'fees', 'amount_paid', 'phone_number'
+        'id',
+        'username',
+        'device_bought',
+        'device_count',
+        'device_total_cost',
+        'status',
+        'purchase_date',
+        'returned_date'
     ];
 }
