@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>View Student Records</title>
+  <title>View Purchase Details</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -57,19 +57,14 @@
 
     function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-            ['No Purchased', 'No Returned'],
+     var purchased = @php echo $totalpurchase;  @endphp;
+     var returned = @php echo $returnedcount;  @endphp;
+     var data = google.visualization.arrayToDataTable([
+                ['Name', 'Value'],
+                ['no purchased' , purchased],
+                ['no returned', returned]
 
-            @php
-            foreach($transactdetails as $product) {
-
-            echo "['".$product->device_count."', ".$product->device_count."],";
-
-
-            }
-            @endphp
-        ]);
-
+              ]);
 
       var options = {
         title: 'Purchase Details',
@@ -81,7 +76,6 @@
       chart.draw(data, options);
     }
   </script>
-
 </div>
 </body>
 </html>

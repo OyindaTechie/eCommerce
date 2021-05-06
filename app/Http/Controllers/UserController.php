@@ -117,11 +117,28 @@ $strng = str_shuffle($pin);
 
 
 
-$transactdetails = Transaction::where('username', $request->username)->get();
+$data['transactdetails'] = Transaction::where('username', $request->username)->get();
+
+$data['purchasecount'] = Transaction::where('username', $request->username)->whereNotNull('device_count')->get();
+
+$data['returnedcount'] = Transaction::where('username', $request->username)->whereNotNull('returned_date')->count();
+
+
+//$purchasesum = array_sum($purchasecount);
 
 echo "transaction successful, go can back to make more purchase";
 
-return view('userdashboard', compact('transactdetails'));
+foreach($data['purchasecount'] as $purchasecounts){
+
+    $purchase[] = $purchasecounts->device_count;
+
+}
+
+$data['totalpurchase'] = array_sum($purchase);
+
+
+
+return view('userdashboard',$data);
 // "transaction successful, go back to make more purchase";
 
 }
