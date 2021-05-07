@@ -34,6 +34,7 @@ Route::get('loginform',function () {
     return view('login');
 });
 
+Route::get('admin', 'AdminController@ViewAllPurchases');
 
 
 
